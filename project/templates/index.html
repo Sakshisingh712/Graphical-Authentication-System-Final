@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div>
+  <h1 class="title" style="font-size:50px; color: rgb(255, 73, 73);">
+    Graphical Authentication System Resistant to Shoulder-Surfing<br><brCS>(Project ID-23MP0093)
+  </h1><br>
+  <h2 class="subtitle" style="font-size:25px; color:aquamarine">
+    by<br><br>
+    Sakshi Singh<br>
+    Roshan Laddha<br>
+    Ayush Sharma<br>
+    Pranjal Sharma<br>
+  </h2><br><br><br>
+  <h1 class="title" style="color:aqua">
+    Major Project (Cyber Security)
+  </h1>
+
+
+  <div class="container">
+    <div class="box">
+      <div class="imgBox">
+        <img src="{{ url_for('static', filename='sakshisingh.jpeg') }}" alt="Sakshi Singh">
+      </div>
+      <div class="detailsBox">
+        <h2>
+          <b>
+            Sakshi Singh <br />
+          <span> Software Engineer</span>
+          <span><a href="#" target="_blank"><i class="fas fa-envelope"><space> </space>singhsakshi.7980@gmail.com</i></a>
+          </b>
+        </h2>
+      </div>
+    </div>
+    <div class="box">
+      <div class="imgBox">
+        <img src="{{ url_for('static', filename='roshanladdha.jpeg') }}" alt="Roshan Laddha">
+      </div>
+      <div class="detailsBox">
+        <h2>
+          <b>
+            Roshan Laddha <br />
+          <span> Software Engineer</span> 
+          <span><a href="#" target="_blank"><i class="fas fa-envelope"><space>  </space>roshanladdha24@gmail.com</i></a>
+          </b>
+        </h2>
+      </div>
+    </div>
+    <div class="box">
+      <div class="imgBox">
+        <img src="{{ url_for('static', filename='pranjalsharma.jpeg') }}" alt="Pranjal Sharma">
+      </div>
+      <div class="detailsBox">
+        <h2>
+          <b>
+            Pranjal Sharma <br />
+          <span> Software Engineer</span>
+          <span><a href="#" target="_blank"><i class="fas fa-envelope"><space>  </space>pranjal3102@gmail.com</i></a>
+          </b>
+        </h2>
+      </div>
+    </div>
+    <div class="box">
+      <div class="imgBox">
+        <img src="{{ url_for('static', filename='ayushsharma.jpeg') }}" alt="Ayush Sharma">
+      </div>
+      <div class="detailsBox">
+        <h2>
+          <b>
+            Ayush Sharma <br />
+          <span> Software Engineer</span>
+          <span><a href="#" target="_blank"><i class="fas fa-envelope"><space>  </space>489ayush@gmail.com</i></a>
+          </b>
+        </h2>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  
+  .container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .container .box {
+    position: relative;
+    width: 10rem;
+    height: 10rem;
+    margin: 2.2rem;  
+  display: inline-block; 
+  }
+  
+  .container .box:hover .detailsBox {
+    transform: translate(4rem,4rem);
+  }
+  .container .imgBox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width:100%;
+    height: 100%;
+    z-index: 1;
+    transition: all 0.5s ease-in-out;
+  }
+  .container .imgBox img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    resize: both;
+  }
+  .container .detailsBox {
+  position: absolute;
+  bottom: -50%;
+  text-align: left;
+  left: 0;
+  width: 160%;
+  height: 60%;
+  z-index: 2;
+  display: none;
+  transition: all 0.5s ease-in-out;
+  background-color: rgba(255, 255, 255, 0.5);
+  color: #000000;
+  padding: 1rem;
+  box-sizing: border-box;
+  word-wrap: break-word;
+}
+
+
+.container .box:hover .detailsBox {
+    display: block;
+    z-index: 3;
+    bottom: 0;
+}
+
+  .container .box:hover .detailsBox {
+    display: block;
+    z-index: 3;
+  }
+</style>
+
+
+{% endblock %}

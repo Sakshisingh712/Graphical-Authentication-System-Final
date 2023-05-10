@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Authentication Template</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+</head>
+<body>
+    <style>
+        body {
+                background-image: url("../static/background.png");
+                background-size: cover;
+                background-position: center;
+            }
+        button {
+            background-color: #4ba7f1;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: p;
+    }
+            
+    button i {
+      margin-right: 6px;
+    }
+    </style>
+
+    <div style="display: flex; justify-content: center; align-items: center; height: 50vh;">
+        <img src="{{ url_for('static', filename='Obscured_image.png')}}" alt="Obscured Image">
+    </div>
+    <div style="text-align: center;">
+      <!-- <p id="error-message"></p>  -->
+        <button id="record-button"><i class="fa fa-microphone"></i> Record</button>
+        <br />
+        <p id="result-text"></p>
+    </div>
+
+	<!-- Include JavaScript to handle microphone and submit button events -->
+	{% block javascript %}
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.15.0/dist/tf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>  
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<!-- <script src="main.js"></script> -->
+<script>
+var button = document.getElementById('record-button');
+var resultText = document.getElementById('result-text');
+button.onclick = function() {
+    var recognition = new webkitSpeechRecognition();
+    recognition.onresult = function(event) {
+        var text = event.results[0][0].transcript;
+        resultText.innerText = text;
+        // send the text to the backend for verification
+        $.post('/verify', {'text': text}, function(response) {
+            if (response === 'authenticated') {
+                window.location.href = '/profile';
+            } else {
+                // error message and start recognition again
+                alert('Authentication Failed! Please speak again.');
+            }
+        });
+    }
+    recognition.start();
+}
+</script>
+    
+{% endblock %}
+</body>
+</html>
